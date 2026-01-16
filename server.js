@@ -169,9 +169,12 @@ function isDBConnected() {
 // Spotify API credentials
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID || '2630ad80437d419baa8155ca4a2716cb';
 const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET || '9c362838dc744faca4364d99644b10ce';
+const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
+const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 
 // Last.fm API key (you'll need to get this from https://www.last.fm/api/account/create)
 const LASTFM_API_KEY = process.env.LASTFM_API_KEY || '620513c3dd4e494e882396f862908153';
+const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
 
 // Cache for access token
 let accessToken = null;
@@ -720,6 +723,7 @@ const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL || 'http://localhost:3001/auth/google/callback';
 const GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL || 'https://noto-unz1.onrender.com/auth/google/callback';
+const GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL;
 
 // Configure Google OAuth Strategy
 if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET) {
