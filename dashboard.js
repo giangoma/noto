@@ -1126,6 +1126,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     initSidebar();
 
     // Initialize search form
+    initSearchForm();
+    
     // Initialize profile form
     initProfileForm();
 
