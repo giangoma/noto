@@ -66,30 +66,6 @@ app.use(cors({
 app.use(express.json());
 
 // ========================================
-// DYNAMIC RESULTS ROUTE
-// ========================================
-// Serves results.html with injected environment variables
-app.get('/results.html', (req, res) => {
-    const fs = require('fs');
-    const path = require('path');
-    
-    try {
-        let html = fs.readFileSync(path.join(__dirname, 'results.html'), 'utf8');
-        
-        // Replace template variables with actual environment variables
-        html = html.replace('{{GEMINI_API_KEY}}', process.env.GEMINI_API_KEY || '');
-        html = html.replace('{{SPOTIFY_CLIENT_ID}}', process.env.SPOTIFY_CLIENT_ID || '');
-        html = html.replace('{{SPOTIFY_CLIENT_SECRET}}', process.env.SPOTIFY_CLIENT_SECRET || '');
-        html = html.replace('{{LASTFM_API_KEY}}', process.env.LASTFM_API_KEY || '');
-        
-        res.send(html);
-    } catch (error) {
-        console.error('Error serving results.html:', error);
-        res.status(500).send('Internal Server Error');
-    }
-});
-
-// ========================================
 // STATIC FILE SERVING
 // ========================================
 // Serves static files (HTML, CSS, JS, images, etc.)
@@ -731,6 +707,9 @@ if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET) {
         callbackUrl: GOOGLE_CALLBACK_URL
     });
     
+    // Remove any existing Google strategy to prevent caching issues
+    passport.unuse('google');
+    
     passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
@@ -801,9 +780,13 @@ if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET) {
     });
 
     // Google OAuth routes
-    app.get('/auth/google',
-        passport.authenticate('google', { scope: ['profile', 'email'] })
-    );
+    app.get('/auth/google', (req, res, next) => {
+        console.log('Google OAuth initiated, callback URL:', GOOGLE_CALLBACK_URL);
+        passport.authenticate('google', { 
+            scope: ['profile', 'email'],
+            callbackURL: GOOGLE_CALLBACK_URL
+        })(req, res, next);
+    });
 
     app.get('/auth/google/callback',
         passport.authenticate('google', { failureRedirect: '/login.html?error=google_auth_failed' }),
