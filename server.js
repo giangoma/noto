@@ -68,6 +68,26 @@ app.use(express.json());
 // ========================================
 // STATIC FILE SERVING
 // ========================================
+// Serves results.html with environment variable injection (
+app.get('/results.html', (req, res) => {
+    const fs = require('fs');
+    
+    try {
+        let html = fs.readFileSync(path.join(__dirname, 'results.html'), 'utf8');
+        
+        // Replaces template placeholders with actual environment variables
+        html = html.replace('{{GEMINI_API_KEY}}', process.env.GEMINI_API_KEY || '');
+        html = html.replace('{{SPOTIFY_CLIENT_ID}}', process.env.SPOTIFY_CLIENT_ID || '');
+        html = html.replace('{{SPOTIFY_CLIENT_SECRET}}', process.env.SPOTIFY_CLIENT_SECRET || '');
+        html = html.replace('{{LASTFM_API_KEY}}', process.env.LASTFM_API_KEY || '');
+        
+        res.send(html);
+    } catch (error) {
+        console.error('Error serving results.html:', error);
+        res.status(500).send('Error loading page');
+    }
+});
+
 // Serves static files (HTML, CSS, JS, images, etc.)
 app.use(express.static(path.join(__dirname)));
 
@@ -949,33 +969,6 @@ app.get('/api/config', (req, res) => {
 // ========================================
 // CLIENT-SIDE ROUTING
 // ========================================
-// Serve results.html with environment variable injection
-app.get('/results.html', (req, res) => {
-    const fs = require('fs');
-    const path = require('path');
-    
-    try {
-        let html = fs.readFileSync(path.join(__dirname, 'results.html'), 'utf8');
-        
-        // Debug: Log environment variables (remove in production)
-        console.log('Environment variables check:');
-        console.log('GEMINI_API_KEY exists:', !!process.env.GEMINI_API_KEY);
-        console.log('GEMINI_API_KEY length:', process.env.GEMINI_API_KEY?.length || 0);
-        console.log('GEMINI_API_KEY prefix:', process.env.GEMINI_API_KEY?.substring(0, 10) + '...');
-        
-        // Replaces template placeholders with actual environment variables
-        html = html.replace('{{GEMINI_API_KEY}}', process.env.GEMINI_API_KEY || '');
-        html = html.replace('{{SPOTIFY_CLIENT_ID}}', process.env.SPOTIFY_CLIENT_ID || '');
-        html = html.replace('{{SPOTIFY_CLIENT_SECRET}}', process.env.SPOTIFY_CLIENT_SECRET || '');
-        html = html.replace('{{LASTFM_API_KEY}}', process.env.LASTFM_API_KEY || '');
-        
-        res.send(html);
-    } catch (error) {
-        console.error('Error serving results.html:', error);
-        res.status(500).send('Error loading page');
-    }
-});
-
 // Catch-all handler for client-side routing
 app.get('*', (req, res) => {
     // Doesn't serve HTML for API routes
