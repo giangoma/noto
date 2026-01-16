@@ -1,12 +1,12 @@
 // ========================================
 // API CONFIGURATION
 // ========================================
-// Gets API keys from environment variables
+// Gets API keys from server-side configuration (injected by server)
 const CONFIG = {
-    geminiApiKey: process.env.GEMINI_API_KEY,
-    spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
-    spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    lastfmApiKey: process.env.LASTFM_API_KEY,
+    geminiApiKey: window.APP_CONFIG?.GEMINI_API_KEY,
+    spotifyClientId: window.APP_CONFIG?.SPOTIFY_CLIENT_ID,
+    spotifyClientSecret: window.APP_CONFIG?.SPOTIFY_CLIENT_SECRET,
+    lastfmApiKey: window.APP_CONFIG?.LASTFM_API_KEY,
 };
 
 // Validates required environment variables

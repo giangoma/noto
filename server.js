@@ -51,6 +51,30 @@ app.use(cors({
 app.use(express.json());
 
 // ========================================
+// DYNAMIC RESULTS ROUTE
+// ========================================
+// Serves results.html with injected environment variables
+app.get('/results.html', (req, res) => {
+    const fs = require('fs');
+    const path = require('path');
+    
+    try {
+        let html = fs.readFileSync(path.join(__dirname, 'results.html'), 'utf8');
+        
+        // Replace template variables with actual environment variables
+        html = html.replace('{{GEMINI_API_KEY}}', process.env.GEMINI_API_KEY || '');
+        html = html.replace('{{SPOTIFY_CLIENT_ID}}', process.env.SPOTIFY_CLIENT_ID || '');
+        html = html.replace('{{SPOTIFY_CLIENT_SECRET}}', process.env.SPOTIFY_CLIENT_SECRET || '');
+        html = html.replace('{{LASTFM_API_KEY}}', process.env.LASTFM_API_KEY || '');
+        
+        res.send(html);
+    } catch (error) {
+        console.error('Error serving results.html:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// ========================================
 // STATIC FILE SERVING
 // ========================================
 // Serves static files (HTML, CSS, JS, images, etc.)

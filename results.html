@@ -58,6 +58,15 @@
     <!-- ========================================
 // SCRIPTS
     // ======================================== -->
+    <!-- Server-injected configuration -->
+    <script>
+        window.APP_CONFIG = {
+            GEMINI_API_KEY: '{{GEMINI_API_KEY}}',
+            SPOTIFY_CLIENT_ID: '{{SPOTIFY_CLIENT_ID}}',
+            SPOTIFY_CLIENT_SECRET: '{{SPOTIFY_CLIENT_SECRET}}',
+            LASTFM_API_KEY: '{{LASTFM_API_KEY}}'
+        };
+    </script>
     <!-- API configuration -->
     <script src="api-config.js"></script>
     <!-- Main results functionality -->
