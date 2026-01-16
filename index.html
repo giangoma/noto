@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+
+<!-- ========================================
+// HEAD SECTION
+// ======================================== -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Noto - Discover New Music</title>
+    <!-- SEO meta description -->
+    <meta name="description"
+        content="Discover new music with Noto, your personalized music recommendation platform. Explore features and get started today.">
+    <!-- Open Graph meta tags for social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Noto - Music Recommendation Website">
+    <meta property="og:description"
+        content="Discover new music with Noto, your personalized music recommendation platform. Explore features and get started today.">
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Inter font family for consistent typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="./Assets/fav-ico.png">
+</head>
+
+<!-- ========================================
+// BODY SECTION
+// ======================================== -->
+<body>
+    <!-- Loading overlay shown during initial page load -->
+    <div id="loading-overlay" aria-hidden="true">
+        <img src="./Assets/noto-gif.gif" alt="Loading" />
+    </div>
+    
+    <!-- Navigation header with logo and auth button -->
+    <header class="nav container">
+        <!-- Noto logo -->
+        <div class="logo" aria-label="Noto logo"></div>
+        <!-- Spacer for layout -->
+        <div class="spacer"></div>
+        <!-- Authentication button -->
+        <a id="nav-auth" class="btn btn-light" href="login.html">Log In</a>
+    </header>
+
+    <!-- ========================================
+// MAIN CONTENT
+    // ======================================== -->
+    <main>
+        <!-- ========================================
+// HERO SECTION
+// ======================================== -->
+        <section class="hero container">
+            <!-- Hero text content -->
+            <div class="hero-text">
+                <h1 class="title">Discover New Music.</h1>
+                <h2 class="subtitle">You pick the vibes, we send the tunes.</h2>
+                <!-- Call-to-action button -->
+                <a id="get-started" class="btn btn-dark hero-cta" href="#cta">Start</a>
+            </div>
+            <!-- Background video with scroll animation -->
+            <div id="scrollable-video-container" class="placeholder header" aria-hidden="true">
+                <video id="scrollable-video" class="bg-video" autoplay muted loop playsinline poster="./Assets/music-thumbnail.jpg">
+                    <source src="./Assets/artists-head.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+        <!-- ========================================
+// FEATURES SECTION
+// ======================================== -->
+        <section class="features container">
+            <!-- Feature 1: Tailored recommendations -->
+            <div class="feature">
+                <div class="feature-text">
+                    <h3 class="feature-title">Tailored recommendations.</h3>
+                    <p class="feature-desc">Get suggestions based on your unique music tastes and listening habits.</p>
+                </div>
+                <div class="placeholder square" aria-hidden="true"></div>
+            </div>
+
+            <!-- Feature 2: Save your songs (reverse layout) -->
+            <div class="feature reverse">
+                <div class="placeholder circle" aria-hidden="true"></div>
+                <div class="feature-text">
+                    <h3 class="feature-title">Save your songs.</h3>
+                    <p class="feature-desc">Picked your tunes? Feel free to save them for later.</p>
+                </div>
+            </div>
+
+            <!-- Feature 3: Real-time updates -->
+            <div class="feature">
+                <div class="feature-text">
+                    <h3 class="feature-title">Real-time updates.</h3>
+                    <p class="feature-desc">We use Spotify and Last.fm to bring you all the latest music in the scene.
+                    </p>
+                </div>
+                <div class="placeholder rounded-square" aria-hidden="true">
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+// CALL-TO-ACTION SECTION
+// ======================================== -->
+        <section id="cta" class="cta container bordered">
+            <!-- CTA text content -->
+            <div class="cta-text">
+                <h2 class="cta-title">Ready to find your sound?</h2>
+                <p class="cta-desc">Just type below to start discovering music that matches your vibe.</p>
+            </div>
+            <!-- Search form -->
+            <form id="search-form" class="search-form" action="results.html" method="GET">
+                <input id="search-input" class="search-input" type="text" name="q"
+                    placeholder="Describe your vibe, mood, or artists..." required
+                    aria-label="Search music by vibe or description" />
+                <button class="btn btn-dark" type="submit" aria-label="Search">
+                    <img src="./Assets/recos.png" alt="Search" class="search-btn-icon" />
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- ========================================
+// FOOTER SECTION
+// ======================================== -->
+    <footer class="footer container bordered">
+        <!-- Mobile/tablet footer tabs -->
+        <div class="footer-tabs">
+            <!-- Tab 1: What is Noto? -->
+            <div class="footer-tab">
+                <button class="footer-tab-button active" data-tab="what-is">
+                    <span class="footer-tab-title">what&nbsp is&nbsp noto?</span>
+                    <span class="footer-tab-icon">+</span>
+                </button>
+                <div class="footer-tab-content active" id="what-is">
+                    <p class="footer-text">Noto is a website that suggests music based on whatever you type in. Just enter a
+                        prompt—whether it's a mood, a place, or even a story—and Noto curates tracks that capture the vibe. It's
+                        a smarter, more creative way to discover songs, turning your words into soundscapes that feel personal
+                        and fresh.</p>
+                </div>
+            </div>
+            
+            <!-- Tab 2: Why Noto? -->
+            <div class="footer-tab">
+                <button class="footer-tab-button" data-tab="why-noto">
+                    <span class="footer-tab-title">why&nbsp noto?</span>
+                    <span class="footer-tab-icon">+</span>
+                </button>
+                <div class="footer-tab-content" id="why-noto">
+                    <p class="footer-text">Noto was created in response to a widespread frustration: the inability of many
+                        platforms to accurately interpret and deliver on user prompts. Traditional music platform search engines
+                        often process queries too literally, failing to capture the user's intent. Noto addresses this gap by
+                        providing a more intuitive, context-aware approach to music discovery.</p>
+                </div>
+            </div>
+            
+            <!-- Tab 3: How does it work? -->
+            <div class="footer-tab">
+                <button class="footer-tab-button" data-tab="how-works">
+                    <span class="footer-tab-title">how&nbsp does&nbsp it&nbsp work?</span>
+                    <span class="footer-tab-icon">+</span>
+                </button>
+                <div class="footer-tab-content" id="how-works">
+                    <p class="footer-text">We use Spotify, Last.fm, and Gemini's artificial intelligence to suggest and curate songs especially for
+                        you.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Desktop fallback layout -->
+        <div class="footer-desktop">
+            <!-- Desktop column 1 -->
+            <div class="footer-col">
+                <p class="footer-heading">what is noto?</p>
+                <p class="footer-text">Noto is a website that suggests music based on whatever you type in. Just enter a
+                    prompt—whether it's a mood, a place, or even a story—and Noto curates tracks that capture the vibe. It's
+                    a smarter, more creative way to discover songs, turning your words into soundscapes that feel personal
+                    and fresh.</p>
+            </div>
+            <!-- Desktop column 2 -->
+            <div class="footer-col">
+                <p class="footer-heading">why noto?</p>
+                <p class="footer-text">Noto was created in response to a widespread frustration: the inability of many
+                    platforms to accurately interpret and deliver on user prompts. Traditional music platform search engines
+                    often process queries too literally, failing to capture the user's intent. Noto addresses this gap by
+                    providing a more intuitive, context-aware approach to music discovery.</p>
+            </div>
+            <!-- Desktop column 3 -->
+            <div class="footer-col">
+                <p class="footer-heading">how's it work?</p>
+                <p class="footer-text">We use Spotify, Last.fm, and Gemini's artificial intelligence to suggest and curate songs especially for
+                    you.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+// POWERED BY SECTION
+// ======================================== -->
+    <div class="powered-by container">
+        <p class="powered-by-text">Powered by</p>
+        <!-- Technology logos -->
+        <div class="powered-by-logos">
+            <img src="./Assets/gemini-logo.webp" alt="Gemini" class="powered-by-logo" />
+            <img src="./Assets/spotify-logo.png" alt="Spotify" class="powered-by-logo" />
+            <img src="./Assets/lastfm-logo.png" alt="Last.fm" class="powered-by-logo powered-by-logo-lastfm" />
+        </div>
+    </div>
+
+    <!-- ========================================
+// SCRIPTS
+    // ======================================== -->
+    <!-- GSAP animation library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- API configuration -->
+    <script src="api-config.js"></script>
+    <!-- Main script functionality -->
+    <script src="script.js"></script>
+</body>
+
+</html>

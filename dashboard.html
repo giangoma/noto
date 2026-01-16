@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard • Noto</title>
+    <meta name="description" content="Your music dashboard - view saved songs and get recommendations">
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Inter font family for consistent typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="./Assets/fav-ico.png">
+</head>
+
+<body class="dashboard-page">
+    <!-- Loading overlay shown during initial page load -->
+    <div id="loading-overlay" aria-hidden="true">
+        <img src="./Assets/noto-gif.gif" alt="Loading" />
+    </div>
+
+    <!-- Main dashboard layout container with sidebar and main content -->
+    <div class="dashboard-split">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="dashboard-sidebar">
+            <!-- Sidebar header with logo and navigation controls -->
+            <div class="sidebar-header">
+                <!-- Logo linking back to home page -->
+                <a class="logo" href="index.html" aria-label="Go to home"></a>
+                <!-- Action buttons container for home link and mobile toggle -->
+                <div class="sidebar-header-actions">
+                    <!-- Home icon linking back to main page -->
+                    <a href="index.html" class="sidebar-home-link">
+                        <img src="./Assets/back2home.png" alt="Home" class="home-icon" />
+                    </a>
+                    <!-- Mobile burger menu toggle for navigation -->
+                    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation menu">
+                        <span class="burger-icon">
+                            <span class="burger-line"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <!-- Main navigation menu with view switching buttons -->
+            <nav class="sidebar-nav" aria-label="Dashboard navigation">
+                <!-- Recommendations view button - shows music suggestions -->
+                <button class="sidebar-item active" data-view="recommendations">
+                    <img src="./Assets/recos.png" alt="Recommendations icon" class="sidebar-icon">
+                    Recommendations
+                </button>
+                <!-- Your Picks view button - shows saved/liked songs -->
+                <button class="sidebar-item" data-view="liked">
+                    <img src="./Assets/your-picks.png" alt="Your picks icon" class="sidebar-icon">
+                    Your Picks
+                </button>
+                <!-- Profile view button - shows user profile settings -->
+                <button class="sidebar-item" data-view="profile">
+                    <img src="./Assets/profile.png" alt="Profile icon" class="sidebar-icon">
+                    Profile
+                </button>
+                
+                <!-- Visual separator between navigation sections -->
+                <div class="sidebar-divider"></div>
+                
+                <!-- About Noto Section - app information and details -->
+                <button class="sidebar-item" data-view="about">
+                    <img src="./Assets/infobtn.png" alt="About icon" class="sidebar-icon">
+                    About Noto
+                </button>
+                
+                <!-- Admin Panel Section - administrative functions -->
+                <button class="sidebar-item" data-view="admin">
+                    <img src="./Assets/locknkey.png" alt="Admin icon" class="sidebar-icon">
+                    Admin
+                </button>
+            </nav>
+        </aside>
+
+        <!-- ========================================
+// MAIN CONTENT AREA
+        // ======================================== -->
+        <div class="dashboard-main">
+
+            <main class="dashboard-content">
+                <!-- ========================================
+// RECOMMENDATIONS VIEW
+        // ======================================== -->
+                <section id="view-recommendations" class="dashboard-view active">
+                    <!-- Search section with welcome message and input -->
+                    <div class="dashboard-search">
+                        <h1 class="welcome-title">welcome to noto.</h1>
+                        <p class="dashboard-subtitle">Describe your vibe, mood, or artists to find your next favorite song.</p>
+                        <!-- Search form for music discovery -->
+                        <form id="dashboard-search-form" class="search-form" action="results.html" method="GET">
+                            <!-- Main search input field -->
+                            <input id="dashboard-search-input" class="search-input" type="text" name="q"
+                                placeholder="Describe your vibe, mood, or artists..." required
+                                aria-label="Search music by vibe or description" />
+                            <!-- Search submit button -->
+                            <button class="btn btn-dark" type="submit" aria-label="Search">
+                                <img src="./Assets/recos.png" alt="Search" class="search-btn-icon" />
+                            </button>
+                        </form>
+                        <!-- Pre-defined search suggestion bubbles -->
+                        <div class="search-suggestions">
+                            <button type="button" class="search-suggestion-bubble">Best nightclub music</button>
+                            <button type="button" class="search-suggestion-bubble">2025 Pop Hits</button>
+                            <button type="button" class="search-suggestion-bubble">melancholy vibe</button>
+                            <button type="button" class="search-suggestion-bubble">workout playlist</button>
+                            <button type="button" class="search-suggestion-bubble">chill study beats</button>
+                            <button type="button" class="search-suggestion-bubble">worship music</button>
+                            <button type="button" class="search-suggestion-bubble">hip hop 2025</button>
+                            <button type="button" class="search-suggestion-bubble">opm classic</button>
+                            <button type="button" class="search-suggestion-bubble">desi music</button>
+                            <button type="button" class="search-suggestion-bubble">music for running</button>
+                            <button type="button" class="search-suggestion-bubble">hype</button>
+                            <button type="button" class="search-suggestion-bubble">korean rnb</button>
+                            <button type="button" class="search-suggestion-bubble">malcolm todd best hits</button>
+                            <button type="button" class="search-suggestion-bubble">meme songs</button>
+                            <button type="button" class="search-suggestion-bubble">brainrot</button>
+                            <button type="button" class="search-suggestion-bubble">tyler the creator</button>
+                            <button type="button" class="search-suggestion-bubble">songs for backburners</button>
+                            <button type="button" class="search-suggestion-bubble">kids nursery rhymes</button>
+                            <button type="button" class="search-suggestion-bubble">best budots mix</button>
+                            <button type="button" class="search-suggestion-bubble">youtuber hits</button>
+                            <button type="button" class="search-suggestion-bubble">old school hiphop</button>
+                            <button type="button" class="search-suggestion-bubble">binaural beats</button>
+                            <button type="button" class="search-suggestion-bubble">lofi study</button>
+                            <button type="button" class="search-suggestion-bubble">hyperpop beats</button>
+                            <button type="button" class="search-suggestion-bubble">uk drill</button>
+                            <button type="button" class="search-suggestion-bubble">phonk brazil</button>
+                            <button type="button" class="search-suggestion-bubble">japanese city pop</button>
+                            <button type="button" class="search-suggestion-bubble">Brr Brr Patapim</button>
+                            <button type="button" class="search-suggestion-bubble">kpop boy group</button>
+                            <button type="button" class="search-suggestion-bubble">CORTIS songs</button>
+                            <button type="button" class="search-suggestion-bubble">free newjeans</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================
+// LIKED SONGS VIEW
+        // ======================================== -->
+                <section id="view-liked" class="dashboard-view">
+                    <h1 class="dashboard-title">Your Picks</h1>
+                    <!-- Loading indicator for songs -->
+                    <div id="status" class="loading" role="status" aria-live="polite" style="display: none;">
+                        <div class="spinner" aria-hidden="true"></div>
+                        <span>Loading your saved songs…</span>
+                    </div>
+                    <!-- Error message display -->
+                    <div id="error" style="display:none; color: #ffdddd; background: #330000; padding: 12px; border-radius: 8px; margin-top: 16px;"></div>
+                    <!-- Songs grid container -->
+                    <div id="songs-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 24px;"></div>
+                    <!-- Empty state when no songs are saved -->
+                    <div id="empty-state" style="display: none; text-align: center; padding: 60px 20px; color: white;">
+                        <p style="font-size: 18px; margin-bottom: 10px;">No saved songs yet</p>
+                        <p style="color: #ccc;">Start exploring and save your favorite tracks!</p>
+                    </div>
+                </section>
+
+                <!-- ========================================
+// PROFILE VIEW
+        // ======================================== -->
+                <section id="view-profile" class="dashboard-view">
+                    <div class="profile-content">
+                        <div class="profile-header">
+                            <!-- Profile picture section with upload functionality -->
+                            <div class="profile-picture-wrapper">
+                                <img id="profile-picture-preview" src="./Assets/prof-generic.png" alt="Profile picture" class="profile-picture-preview" />
+                                <input type="file" id="profile-picture-upload" accept="image/*" style="display: none;" />
+                                <div class="profile-picture-edit-icon">
+                                    <img src="./Assets/photo-logo.webp" alt="Edit" />
+                                </div>
+                            </div>
+                            <h1 id="profile-greeting" class="profile-greeting">Hello, User</h1>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <h2 class="profile-section-title">Account Settings</h2>
+                            <form id="profile-form" class="profile-form">
+                                <div class="form-group">
+                                    <label for="profile-username">Username</label>
+                                    <div>
+                                        <input id="profile-username" type="text" placeholder="Enter username (3+ characters)" />
+                                        <button type="button" class="btn btn-dark btn-small" id="update-username-btn">Update</button>
+                                    </div>
+                                    <small class="form-hint">Must be at least 3 characters long</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-email">Email</label>
+                                    <div>
+                                        <input id="profile-email" type="email" placeholder="Enter email address" />
+                                        <button type="button" class="btn btn-dark btn-small" id="update-email-btn">Update</button>
+                                    </div>
+                                    <small class="form-hint">Must be a valid email address</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-password">Password</label>
+                                    <div>
+                                        <input id="profile-password" type="password" placeholder="Enter new password (6+ characters)" />
+                                        <button type="button" class="btn btn-dark btn-small" id="update-password-btn">Update</button>
+                                    </div>
+                                    <small class="form-hint">Must be at least 6 characters long</small>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <div class="profile-section">
+                            <h2 class="profile-section-title">Theme Colors</h2>
+                            <div class="theme-selector">
+                                <div class="theme-option" data-theme="purple">
+                                    <div class="theme-preview" style="background: linear-gradient(135deg, #E6E6FA, #9370DB, #4B0082);"></div>
+                                    <span>Noto</span>
+                                </div>
+                                <div class="theme-option" data-theme="blue">
+                                    <div class="theme-preview" style="background: linear-gradient(135deg, #2C3E50, #34495E, #1A252F);"></div>
+                                    <span>Ocean Eyes</span>
+                                </div>
+                                <div class="theme-option" data-theme="green">
+                                    <div class="theme-preview" style="background: linear-gradient(135deg, #2D4A2D, #3A5A3A, #1F3A1F);"></div>
+                                    <span>Matcha Latte</span>
+                                </div>
+                                <div class="theme-option" data-theme="red">
+                                    <div class="theme-preview" style="background: linear-gradient(135deg, #4A2C2C, #5A3A3A, #3A1F1F);"></div>
+                                    <span>Magician's Red</span>
+                                </div>
+                                <div class="theme-option" data-theme="orange">
+                                    <div class="theme-preview" style="background: linear-gradient(135deg, #4A3A2C, #5A4A3A, #3A2F1F);"></div>
+                                    <span>Cool Bronze</span>
+                                </div>
+                                <div class="theme-option" data-theme="pink">
+                                    <div class="theme-preview" style="background: linear-gradient(135deg, #4A2C3A, #5A3A4A, #3A1F2F);"></div>
+                                    <span>Ube Jam</span>
+                                </div>
+                                <div class="theme-option" data-theme="hmhas">
+                                    <div class="theme-preview" style="background-image: url('./Assets/HMHAS.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+                                    <span>HMHAS</span>
+                                </div>
+                                <div class="theme-option" data-theme="sabrina">
+                                    <div class="theme-preview" style="position: relative; overflow: hidden; background: #000;">
+                                        <video style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;" muted loop playsinline>
+                                            <source src="./Assets/sabrina.mp4" type="video/mp4">
+                                        </video>
+                                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 10px; pointer-events: none;">▶</div>
+                                    </div>
+                                    <span>Short n' Sweet</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <button id="profile-logout" class="profile-logout-btn">Log Out</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================
+// ABOUT VIEW
+        // ======================================== -->
+                <section id="view-about" class="dashboard-view">
+                    <div class="about-container">
+                        <h1 class="dashboard-title">About Noto</h1>
+                        
+                        <div class="about-content">
+                            <div class="about-section">
+                                <h2 class="about-heading">what &nbspis &nbspnoto?</h2>
+                                <p class="about-text">Noto is a website that suggests music based on whatever you type in. Just enter a
+                                    prompt—whether it's a mood, a place, or even a story—and Noto curates tracks that capture the vibe. It's
+                                    a smarter, more creative way to discover songs, turning your words into soundscapes that feel personal
+                                    and fresh.</p>
+                            </div>
+                            
+                            <div class="about-section">
+                                <h2 class="about-heading">why &nbspnoto?</h2>
+                                <p class="about-text">Noto was created in response to a widespread frustration: the inability of many
+                                    platforms to accurately interpret and deliver on user prompts. Traditional music platform search engines
+                                    often process queries too literally, failing to capture the user's intent. Noto addresses this gap by
+                                    providing a more intuitive, context-aware approach to music discovery.</p>
+                            </div>
+                            
+                            <div class="about-section">
+                                <h2 class="about-heading">how &nbspdoes &nbspit &nbspwork?</h2>
+                                <p class="about-text">We use Spotify, Last.fm, and Gemini's artificial intelligence to suggest and curate songs especially for
+                                    you. Just enter a prompt, and we'll handle the rest.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================
+// ADMIN VIEW
+        // ======================================== -->
+                <section id="view-admin" class="dashboard-view">
+                    <div class="admin-container">
+                        <h1 class="dashboard-title">Admin Panel</h1>
+                        
+                        <!-- Admin Login Form -->
+                        <div id="admin-login" class="admin-login-container">
+                            <div class="admin-login-card">
+                                <h2 class="admin-login-title">Admin Access Required</h2>
+                                <p class="admin-login-subtitle">Enter the admin password to access the panel</p>
+                                <form id="admin-login-form" class="admin-login-form">
+                                    <div class="form-group">
+                                        <input id="admin-password" type="password" placeholder="Enter admin password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btn-full">Access Admin Panel</button>
+                                </form>
+                                <div id="admin-error" class="admin-error" style="display: none;">
+                                    Invalid password. Access denied.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Admin Dashboard (Hidden by default) -->
+                        <div id="admin-dashboard" class="admin-dashboard-container" style="display: none;">
+                            <div class="admin-header">
+                                <h2 class="admin-subtitle">User Management</h2>
+                                <button id="admin-refresh" class="btn btn-dark">Refresh Users</button>
+                            </div>
+                            
+                            <div id="admin-users-list" class="admin-users-list">
+                                <!-- Users will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- ========================================
+// SCRIPTS
+    // ======================================== -->
+    <script src="api-config.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
+

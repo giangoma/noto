@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<!-- ========================================
+// HEAD SECTION
+// ======================================== -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Noto - Results</title>
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="./Assets/fav-ico.png">
+</head>
+
+<!-- ========================================
+// BODY SECTION
+// ======================================== -->
+<body>
+    <!-- Loading overlay shown during initial page load -->
+    <div id="loading-overlay" aria-hidden="true">
+        <img src="./Assets/noto-gif.gif" alt="Loading" />
+    </div>
+    
+    <!-- Navigation header with logo and auth buttons -->
+    <header class="nav container">
+        <!-- Noto logo -->
+        <div class="logo" aria-label="Noto logo"></div>
+        <!-- Spacer for layout -->
+        <div class="spacer"></div>
+        <!-- Home navigation button -->
+        <a class="btn btn-light" href="index.html">Home</a>
+        <!-- Authentication button (Login/Dashboard) -->
+        <a id="nav-auth" class="btn btn-light" href="login.html">Log In</a>
+    </header>
+
+    <!-- ========================================
+// MAIN CONTENT
+    // ======================================== -->
+    <main class="container" style="padding: 40px 0;">
+        <!-- Page title -->
+        <h1 class="title" style="margin-bottom: 20px;">Your recommendations</h1>
+        
+        <!-- Loading status indicator -->
+        <div id="status" class="loading" role="status" aria-live="polite">
+            <div class="spinner" aria-hidden="true"></div>
+            <span>Analyzing your prompt and fetching songs…</span>
+        </div>
+        
+        <!-- Error message container -->
+        <div id="error" style="display:none; color: #ffdddd; background: #330000; padding: 12px; border-radius: 8px; margin-top: 16px;"></div>
+        
+        <!-- Results container where search results are displayed -->
+        <section id="results" style="display:none; margin-top: 24px;"></section>
+    </main>
+
+    <!-- ========================================
+// SCRIPTS
+    // ======================================== -->
+    <!-- API configuration -->
+    <script src="api-config.js"></script>
+    <!-- Main results functionality -->
+    <script src="results.js"></script>
+    
+    <!-- ========================================
+// NAVIGATION AUTHENTICATION
+    // ======================================== -->
+    <script>
+        // Updates navigation auth button in results page
+        document.addEventListener('DOMContentLoaded', () => {
+            const navAuth = document.getElementById('nav-auth');
+            if (navAuth) {
+                const savedUser = localStorage.getItem('noto_user');
+                const token = localStorage.getItem('noto_token');
+                if (savedUser && token) {
+                    // Adds dashboard link
+                    const dashboardLink = document.createElement('a');
+                    dashboardLink.className = 'btn btn-light';
+                    dashboardLink.href = 'dashboard.html';
+                    dashboardLink.textContent = 'Dashboard';
+                    navAuth.parentNode.insertBefore(dashboardLink, navAuth);
+                    
+                    // Hides the nav-auth button (removes Log Out)
+                    navAuth.style.display = 'none';
+                } else {
+                    navAuth.textContent = 'Log In';
+                    navAuth.setAttribute('href', 'login.html');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+

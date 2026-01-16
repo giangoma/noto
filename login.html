@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<!-- ========================================
+// HEAD SECTION
+// ======================================== -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Noto - Log In</title>
+    <meta name="description" content="Log in or create an account to save your music on Noto.">
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Inter font family for consistent typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="./Assets/fav-ico.png">
+</head>
+
+<!-- ========================================
+// BODY SECTION
+// ======================================== -->
+<body class="auth-page">
+    <!-- Loading overlay shown during initial page load -->
+    <div id="loading-overlay" aria-hidden="true">
+        <img src="./Assets/noto-gif.gif" alt="Loading" />
+    </div>
+
+    <!-- ========================================
+// AUTHENTICATION LAYOUT
+// ======================================== -->
+    <div class="auth-split">
+        <!-- Left side with forms -->
+        <div class="auth-left">
+            <!-- Authentication header with navigation -->
+            <header class="auth-header">
+                <!-- Noto logo linking to home -->
+                <a class="logo" href="index.html" aria-label="Noto home"></a>
+                <!-- Spacer for layout -->
+                <div class="spacer"></div>
+                <!-- Home navigation button -->
+                <a class="btn btn-light" href="index.html">Home</a>
+            </header>
+
+            <!-- ========================================
+// MAIN AUTHENTICATION CONTENT
+            // ======================================== -->
+            <main class="auth-content">
+                <!-- Authentication section with tabs -->
+                <section aria-labelledby="auth-title">
+                    <!-- Page title -->
+                    <h1 id="auth-title" class="auth-title">Welcome back</h1>
+                    <!-- Page subtitle -->
+                    <p class="auth-subtitle">Log in to continue, or create a new account to use special features.</p>
+
+                    <!-- Tab navigation for login/register -->
+                    <div class="auth-tabs" role="tablist" aria-label="Auth tabs">
+                        <!-- Login tab (active by default) -->
+                        <button id="tab-login" class="auth-tab active" role="tab" aria-selected="true" aria-controls="panel-login">Log In</button>
+                        <!-- Register tab -->
+                        <button id="tab-register" class="auth-tab" role="tab" aria-selected="false" aria-controls="panel-register">Register</button>
+                    </div>
+
+                    <!-- Login form -->
+                    <form id="form-login" class="auth-form" role="tabpanel" aria-labelledby="tab-login" aria-hidden="false">
+                        <!-- Email/Username input field -->
+                        <div class="form-group">
+                            <label for="login-identifier">Email or Username</label>
+                            <input id="login-identifier" name="identifier" type="text" autocomplete="username" placeholder="you@example.com or yourusername" required>
+                        </div>
+                        <!-- Password input field with toggle -->
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <div class="password-input-wrapper">
+                                <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+                                <button type="button" class="password-toggle" aria-label="Toggle password visibility" data-target="login-password">
+                                    <span class="toggle-text">Show</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Form action buttons -->
+                        <div class="auth-actions">
+                            <button type="submit" class="btn btn-dark btn-full">Log In</button>
+                            <div class="auth-divider">or</div>
+                            <!-- Google OAuth button -->
+                            <a class="btn google-btn btn-full" href="http://localhost:3001/auth/google">
+                                <img src="./Assets/google-logo.png" alt="Google" class="google-logo" />
+                                Continue with Google
+                            </a>
+                        </div>
+                    </form>
+
+                    <!-- Registration form -->
+                    <form id="form-register" class="auth-form" role="tabpanel" aria-labelledby="tab-register" aria-hidden="true" hidden>
+                        <!-- Email/Username input field -->
+                        <div class="form-group">
+                            <label for="reg-identifier">Email or Username</label>
+                            <input id="reg-identifier" name="identifier" type="text" autocomplete="username" placeholder="you@example.com or yourusername (3+ chars if username)" required>
+                            <small class="form-hint">Use email or username (3+ characters)</small>
+                        </div>
+                        <!-- Password input field with toggle -->
+                        <div class="form-group">
+                            <label for="reg-password">Password</label>
+                            <div class="password-input-wrapper">
+                                <input id="reg-password" name="password" type="password" autocomplete="new-password" placeholder="•••••••• (6+ characters)" required>
+                                <button type="button" class="password-toggle" aria-label="Toggle password visibility" data-target="reg-password">
+                                    <span class="toggle-text">Show</span>
+                                </button>
+                            </div>
+                            <small class="form-hint">Must be at least 6 characters long</small>
+                        </div>
+                        <!-- Password confirmation field -->
+                        <div class="form-group">
+                            <label for="reg-confirm">Confirm Password</label>
+                            <div class="password-input-wrapper">
+                                <input id="reg-confirm" name="confirm" type="password" autocomplete="new-password" placeholder="••••••••" required>
+                                <button type="button" class="password-toggle" aria-label="Toggle password visibility" data-target="reg-confirm">
+                                    <span class="toggle-text">Show</span>
+                                </button>
+                            </div>
+                            <small class="form-hint">Must match the password above</small>
+                        </div>
+                        <!-- Form action buttons -->
+                        <div class="auth-actions">
+                            <button type="submit" class="btn btn-dark btn-full">Create Account</button>
+                            <div class="auth-divider">or</div>
+                            <!-- Google OAuth button -->
+                            <a class="btn google-btn btn-full" id="google-login-btn" href="#">
+                                <img src="./Assets/google-logo.png" alt="Google" class="google-logo" />
+                                Continue with Google
+                            </a>
+                        </div>
+                    </form>
+                </section>
+            </main>
+        </div>
+
+        <!-- Right side with decoration -->
+        <div class="auth-right">
+            <img src="./Assets/music-vinyl.png" alt="Music decoration" class="auth-decoration" />
+        </div>
+    </div>
+
+    <!-- ========================================
+// SCRIPTS
+    // ======================================== -->
+    <!-- API configuration -->
+    <script src="api-config.js"></script>
+    <!-- Authentication functionality -->
+    <script src="auth.js"></script>
+    <!-- Shared script utilities -->
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
