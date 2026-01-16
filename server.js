@@ -957,6 +957,12 @@ app.get('/results.html', (req, res) => {
     try {
         let html = fs.readFileSync(path.join(__dirname, 'results.html'), 'utf8');
         
+        // Debug: Log environment variables (remove in production)
+        console.log('Environment variables check:');
+        console.log('GEMINI_API_KEY exists:', !!process.env.GEMINI_API_KEY);
+        console.log('GEMINI_API_KEY length:', process.env.GEMINI_API_KEY?.length || 0);
+        console.log('GEMINI_API_KEY prefix:', process.env.GEMINI_API_KEY?.substring(0, 10) + '...');
+        
         // Replaces template placeholders with actual environment variables
         html = html.replace('{{GEMINI_API_KEY}}', process.env.GEMINI_API_KEY || '');
         html = html.replace('{{SPOTIFY_CLIENT_ID}}', process.env.SPOTIFY_CLIENT_ID || '');
