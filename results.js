@@ -1,13 +1,31 @@
 // ========================================
 // API CONFIGURATION
 // ========================================
-// Gets API keys from environment variables or fallback to defaults
+// Gets API keys from environment variables
 const CONFIG = {
-    geminiApiKey: process.env.GEMINI_API_KEY || 'AIzaSyD8-LNTlMCfQK1sHwMiXi2DlRq4YlhPJQU',
-    spotifyClientId: process.env.SPOTIFY_CLIENT_ID || '2630ad80437d419baa8155ca4a2716cb',
-    spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET || '9c362838dc744faca4364d99644b10ce',
-    lastfmApiKey: process.env.LASTFM_API_KEY || '620513c3dd4e494e882396f862908153',
+    geminiApiKey: process.env.GEMINI_API_KEY,
+    spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
+    spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    lastfmApiKey: process.env.LASTFM_API_KEY,
 };
+
+// Validates required environment variables
+function validateConfig() {
+    const missing = [];
+    
+    if (!CONFIG.geminiApiKey) missing.push('GEMINI_API_KEY');
+    if (!CONFIG.spotifyClientId) missing.push('SPOTIFY_CLIENT_ID');
+    if (!CONFIG.spotifyClientSecret) missing.push('SPOTIFY_CLIENT_SECRET');
+    if (!CONFIG.lastfmApiKey) missing.push('LASTFM_API_KEY');
+    
+    if (missing.length > 0) {
+        console.error('Missing required environment variables:', missing.join(', '));
+        console.error('Please set these environment variables and restart the application.');
+        return false;
+    }
+    
+    return true;
+}
 
 // ========================================
 // UTILITY FUNCTIONS
@@ -724,6 +742,12 @@ function fail(message) {
 // ========================================
 // Main function that orchestrates the entire search process
 async function main() {
+    // Validates configuration before proceeding
+    if (!validateConfig()) {
+        fail('Application configuration is incomplete. Please check console for details.');
+        return;
+    }
+    
     const q = getQueryParam('q').trim();
     if (!q) {
         fail('Missing search query. Go back and try again.');
