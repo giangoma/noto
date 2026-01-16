@@ -949,6 +949,27 @@ app.get('/api/config', (req, res) => {
 // ========================================
 // CLIENT-SIDE ROUTING
 // ========================================
+// Serve results.html with environment variable injection
+app.get('/results.html', (req, res) => {
+    const fs = require('fs');
+    const path = require('path');
+    
+    try {
+        let html = fs.readFileSync(path.join(__dirname, 'results.html'), 'utf8');
+        
+        // Replaces template placeholders with actual environment variables
+        html = html.replace('{{GEMINI_API_KEY}}', process.env.GEMINI_API_KEY || '');
+        html = html.replace('{{SPOTIFY_CLIENT_ID}}', process.env.SPOTIFY_CLIENT_ID || '');
+        html = html.replace('{{SPOTIFY_CLIENT_SECRET}}', process.env.SPOTIFY_CLIENT_SECRET || '');
+        html = html.replace('{{LASTFM_API_KEY}}', process.env.LASTFM_API_KEY || '');
+        
+        res.send(html);
+    } catch (error) {
+        console.error('Error serving results.html:', error);
+        res.status(500).send('Error loading page');
+    }
+});
+
 // Catch-all handler for client-side routing
 app.get('*', (req, res) => {
     // Doesn't serve HTML for API routes
