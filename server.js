@@ -725,6 +725,12 @@ app.put('/api/admin/users/:userId/ban', authenticateToken, async (req, res) => {
 
 // Configure Google OAuth Strategy
 if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET) {
+    console.log('Google OAuth Strategy configured with:', {
+        hasClientId: !!GOOGLE_CLIENT_ID,
+        hasClientSecret: !!GOOGLE_CLIENT_SECRET,
+        callbackUrl: GOOGLE_CALLBACK_URL
+    });
+    
     passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
