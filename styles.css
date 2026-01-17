@@ -2368,3 +2368,143 @@ body.dashboard-page {
         filter: none;
     }
 }
+
+/* Small mobile devices (320px - 480px) */
+@media (max-width: 479.98px) {
+    .container {
+        width: 100%;
+        padding: 0 12px;
+    }
+
+    .hero {
+        padding: 20px 0;
+        gap: 16px;
+    }
+
+    .title {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        line-height: 1.3;
+    }
+
+    .feature-title {
+        font-size: 22px;
+    }
+
+    .feature-desc {
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .input-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .input-group .btn {
+        width: 100%;
+    }
+
+    /* Dashboard adjustments for small mobiles */
+    .dashboard-content {
+        padding: 16px 12px;
+    }
+
+    .dashboard-title {
+        font-size: 24px;
+    }
+
+    .dashboard-subtitle {
+        font-size: 14px;
+    }
+
+    .sidebar-item {
+        padding: 12px 8px;
+        font-size: 14px;
+    }
+
+    .sidebar-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Songs grid for small mobiles */
+    #songs-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .song-card {
+        padding: 12px;
+    }
+
+    .song-title {
+        font-size: 14px;
+    }
+
+    .song-artist {
+        font-size: 12px;
+    }
+
+    /* Auth forms for small mobiles */
+    .auth-left {
+        padding: 20px 16px;
+    }
+
+    .auth-title {
+        font-size: 24px;
+    }
+
+    .auth-subtitle {
+        font-size: 14px;
+    }
+
+    .form-control {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Search form adjustments */
+    .dashboard-search-form {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .dashboard-search-form .btn {
+        width: 100%;
+    }
+
+    /* Profile adjustments */
+    .profile-greeting {
+        font-size: 20px;
+    }
+
+    .profile-form .form-group {
+        margin-bottom: 16px;
+    }
+
+    /* Admin panel adjustments */
+    .admin-container {
+        padding: 20px 12px;
+    }
+
+    .admin-user-card {
+        padding: 12px;
+    }
+
+    .admin-user-name {
+        font-size: 16px;
+    }
+
+    .admin-user-email {
+        font-size: 12px;
+    }
+}
